@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>欣盛云图</title>
+		<link rel="stylesheet" href="css/style.css"/>
+		<script src="js/jquery.min.js"></script>
+		<script src="js/public.js"></script>
+		<script type="text/javascript" src="https://api.map.baidu.com/api?v=1.0&type=webgl&ak=lk5nllwiBvEe1gPGIqywabAaKGLenpHB"></script>
+	</head>
+	<body>
+		<header class="header">
+			<div class="pubCon hdCon">
+				<div class="hdLogo">
+					<ul>
+						<li><a href="http://127.0.0.1:8848/SceneMap/loadshp/index.html">Scene map®首页</a></li>
+					</ul>
+				</div>
+				<nav class="hdNav">
+					<ul>
+						<li><a href="#">我的定位</a></li>
+					</ul>
+				</nav>
+			</div>
+			
+		</header>
+		
+		<!--baidu地图-->
+		<div class="baidumap">
+			<div id="container"></div>
+		</div>
+		
+	</body>
+	
+	
+	<script type="text/javascript">
+		var map = new BMapGL.Map("container");
+	     // 创建地图实例 
+	    var point = new BMapGL.Point(116.404, 39.915);
+	    // 创建点坐标 
+	    map.centerAndZoom(point, 15);
+	    // 初始化地图，设置中心点坐标和地图级别 
+	    map.enableScrollWheelZoom();//启用滚轮放大缩小
+        
+		
+		<!--实现定位到目前所在位置-->
+	    var myIcon = new BMapGL.Icon("myicon.png",new BMapGL.Size(30,30),{
+	        anchor: new BMapGL.Size(10,10)    
+	    });
+				
+		var marker=new BMapGL.Marker(point,{icon: myIcon});  
+		map.addOverlay(marker);  
+		var geolocation = new BMapGL.Geolocation();
+		var myplace = null;
+		geolocation.getCurrentPosition(function(r){
+		    if(this.getStatus() == BMAP_STATUS_SUCCESS){
+		        var mk = new BMapGL.Marker(r.point);
+		        map.addOverlay(mk);
+		        map.panTo(r.point);//地图中心点移到当前位置
+		        var latCurrent = r.point.lat;
+		        var lngCurrent = r.point.lng;
+				var gc = new BMapGL.Geocoder();
+				gc.getLocation(r.point, function(rs){
+				   var addComp = rs.addressComponents;
+				   myplace = addComp.province + ", " + addComp.city + ", " + addComp.district + ", " + addComp.street + ", " + addComp.streetNumber
+				   alert('我的位置：'+addComp.province + ", " + addComp.city + ", " + addComp.district + ", " + addComp.street + ", " + addComp.streetNumber);
+				});
+		    }
+		    else {
+		        alert('failed'+this.getStatus());
+		    }        
+		},{enableHighAccuracy: true})
+		map.addOverlay(marker);  
+		
+		
+		//点击‘我的定位’弹出所在位置
+		$(".hdNav").click(function () {
+                 alert("目前位于:"+myplace)
+		    })
+		
+
+		
+	</script> 
+
+</html>

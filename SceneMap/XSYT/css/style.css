@@ -1,0 +1,118 @@
+*{padding: 0; margin: 0; font-family: "微软雅黑","黑体","宋体"; font-size: 14px; color: black;}
+a{text-decoration: none;}
+ul,ol{list-style: none;}
+img{border: none;}
+input,textarea{outline: none;}
+
+
+.pubCon{width: 1200px; margin: 0 auto;}
+/*头部模块*/
+.header{height: 60px; width: 100%; background-color: aquamarine;}
+.hdCon{
+	height:100%; 
+	display: flex; 
+	align-items: center;
+}
+
+
+
+.hdLogo{
+    float: left;
+	margin-left: 100px;
+	font-size: 50px;
+}
+.hdLogo ul li a{
+	font-size: 30px;
+}
+
+
+
+.hdNav ul{display: flex;}
+
+
+.hdNav li a{
+	display: block;
+	font-size: 18px;
+	padding-left: 700px;
+}
+.hdNav li:hover a{
+	color: blue;
+}
+
+/*地图部分*/
+#container {
+    height: 1200px;
+    width: 100%px;
+}
+
+/*平板端*/
+@media(max-width:992px){
+	.pubCon{width: 100%;}
+	/*头部模块*/
+	.header{height: 60px; width: 100%;}
+	.hdCon{
+		height:100%; 
+		display: flex; 
+		align-items: center;
+	}
+	
+	
+	.hdLogo{
+	    float: left;
+		margin-left: 30px;
+		font-size: 30px;
+	}
+	.hdLogo ul li a{
+		font-size: 30px;
+	}
+	
+	
+	
+	.hdNav ul{display: flex;}
+	
+	
+	.hdNav li a{
+		display: block;
+		font-size: 18px;
+		padding-left: 300px;
+	}
+	.hdNav li:hover a{
+		color: blue;
+	}
+}
+
+/*手机端*/
+@media(max-width:768px){
+	.pubCon{width: 100%;}
+	/*头部模块*/
+	.header{height: 60px; width: 100%;}
+	.hdCon{
+		height:100%; 
+		display: flex; 
+		align-items: center;
+	}
+	
+	
+	.hdLogo{
+	    float: left;
+		margin-left: 20px;
+		font-size: 20px;
+	}
+	.hdLogo ul li a{
+		font-size: 20px;
+	}
+	
+	
+	
+	.hdNav ul{display: flex;}
+	
+	
+	.hdNav li a{
+		display: block;
+		font-size: 18px;
+		padding-left: 100px;
+	}
+	.hdNav li:hover a{
+		color: blue;
+	}
+}
